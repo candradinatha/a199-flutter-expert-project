@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+import 'package:ditonton/domain/entities/tv.dart';
 import 'package:equatable/equatable.dart';
 
 TvModel tvModelFromJson(String str) => TvModel.fromJson(json.decode(str));
@@ -72,6 +73,24 @@ class TvModel extends Equatable {
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
+
+  Tv toEntity() {
+    return Tv(
+      backdropPath: this.backdropPath,
+      firstAirDate: this.firstAirDate,
+      genreIds: this.genreIds,
+      id: this.id,
+      name: this.name,
+      originCountry: this.originCountry,
+      originalLanguage: this.originalLanguage,
+      originalName: this.originalName,
+      overview: this.overview,
+      popularity: this.popularity,
+      posterPath: this.posterPath,
+      voteAverage: this.voteAverage,
+      voteCount: this.voteCount,
+    );
+  }
 
   @override
   List<Object?> get props => [

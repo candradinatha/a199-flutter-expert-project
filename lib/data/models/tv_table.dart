@@ -1,49 +1,50 @@
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/tv.dart';
+import '../../domain/entities/tv_detail.dart';
+
 class TvTable extends Equatable {
-  final int id;
-  final String? title;
-  final String? backdropPath;
+  final int? id;
+  final String? name;
+  final String? posterPath;
   final String? overview;
 
   TvTable({
     required this.id,
-    required this.title,
-    required this.backdropPath,
+    required this.name,
+    required this.posterPath,
     required this.overview,
   });
 
-  factory TvTable.fromEntity(MovieDetail movie) => TvTable(
+  factory TvTable.fromEntity(TvDetail movie) => TvTable(
         id: movie.id,
-        title: movie.title,
-        backdropPath: movie.posterPath,
+        name: movie.name,
+        posterPath: movie.posterPath,
         overview: movie.overview,
       );
 
   factory TvTable.fromMap(Map<String, dynamic> map) => TvTable(
         id: map['id'],
-        title: map['title'],
-        backdropPath: map['backdropPath'],
+        name: map['name'],
+        posterPath: map['posterPath'],
         overview: map['overview'],
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'title': title,
-        'backdropPath': backdropPath,
+        'name': name,
+        'posterPath': posterPath,
         'overview': overview,
       };
 
-  Movie toEntity() => Movie.watchlist(
+  Tv toEntity() => Tv.watchlist(
         id: id,
         overview: overview,
-        posterPath: backdropPath,
-        title: title,
+        posterPath: posterPath,
+        name: name,
       );
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id, title, backdropPath, overview];
+  List<Object?> get props => [id, name, posterPath, overview];
 }
